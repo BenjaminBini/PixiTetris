@@ -7,6 +7,9 @@ export default class Game {
   constructor() {
     console.log(PIXI);
 
+    // DOM container
+    this._domContainer = document.getElementById('game');
+
     // Keyboard events
     var leftKey = this._keyboard(37);
     var upKey = this._keyboard(38);
@@ -19,7 +22,7 @@ export default class Game {
      
     // Set up PIXI and launch game
     this.renderer = PIXI.autoDetectRenderer(Constants.WIDTH * Constants.SQUARE_SIZE, Constants.HEIGHT * Constants.SQUARE_SIZE);
-    document.body.appendChild(this.renderer.view);
+    this._domContainer.appendChild(this.renderer.view);
 
     // Pixi container
     this.container = new PIXI.Container();
