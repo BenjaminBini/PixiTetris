@@ -1,0 +1,63 @@
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    width: 1280px;
+    margin: auto;
+    text-align: center;
+}
+
+h2 {
+    color: #878787;
+}
+
+a {
+    color: #878787;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+canvas {
+    margin-top: 30px;
+}
+
+footer {
+	background: #fff;
+	color: #878787;
+	border-top: 1px solid #878787;
+	margin-top: 40px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+footer p {
+	padding: 0;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+footer a {
+	color: #878787;
+	text-decoration: none;
+}
+
+footer span.cc {
+	font-family: 'CC-ICONS';
+	font-weight: normal;
+	vertical-align: text-top;
+}
+
+footer span.footer-text {
+	padding: 0 10px;
+	font-weight: bold;
+}
+
+footer .github {
+	font-size: 20px;
+	/* vertical-align: text-top; */
+}
