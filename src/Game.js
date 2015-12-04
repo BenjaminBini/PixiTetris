@@ -22,6 +22,7 @@ export default class Game {
      
     // Set up PIXI and launch game
     this.renderer = PIXI.autoDetectRenderer(Constants.WIDTH * Constants.SQUARE_SIZE, Constants.HEIGHT * Constants.SQUARE_SIZE);
+    //this.renderer.backgroundColor = 0x4CA4B9;
     this._domContainer.appendChild(this.renderer.view);
 
     // Pixi container

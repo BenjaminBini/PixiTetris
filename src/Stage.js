@@ -29,7 +29,7 @@ export default class Stage {
         // Color blocks when not empty
         if (this._data[x][y] !== 0) {
           var square = new PIXI.Graphics();
-          square.lineStyle(2, 0x0, 1);
+          square.lineStyle(1, Constants.COLORS.TETROMINO_BORDERS, 1);
           square.beginFill(this._data[x][y]);
           square.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
           square.endFill();
@@ -37,12 +37,14 @@ export default class Stage {
           square.y = y * Constants.SQUARE_SIZE;
           this._container.addChild(square);
         } else { // Just a white dot in the middle if empty
-          var dot = new PIXI.Graphics();
-          dot.beginFill(0xffffff);
-          dot.drawRect(0, 0, 1, 1);
-          dot.x = (x) * Constants.SQUARE_SIZE + 0.5 * Constants.SQUARE_SIZE;
-          dot.y = (y) * Constants.SQUARE_SIZE + 0.5 * Constants.SQUARE_SIZE;
-          this._container.addChild(dot);
+          var square = new PIXI.Graphics();
+          square.lineStyle(1, Constants.COLORS.BORDERS, Constants.COLORS.BORDERS_TRANSPARENCY);
+          square.beginFill(Constants.COLORS.BACKGROUND);
+          square.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
+          square.endFill();
+          square.x = x * Constants.SQUARE_SIZE;
+          square.y = y * Constants.SQUARE_SIZE;
+          this._container.addChild(square);
         }
       }
     }

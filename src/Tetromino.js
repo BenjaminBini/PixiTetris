@@ -36,7 +36,7 @@ export default class Tetromino {
       for (let y = 0; y < this.type.size; y++) {
         if (this.type.shapes[this.angle][y][x] === 1) {
           var square = new PIXI.Graphics();
-          square.lineStyle(2, 0x0, 1);
+          square.lineStyle(1, Constants.COLORS.TETROMINO_BORDERS, 1);
           square.beginFill(this.type.color);
           square.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
           square.endFill();
@@ -90,7 +90,7 @@ export default class Tetromino {
 export const Types = {
   I: {
     name: 'I', // Name of the tetromino
-    color: 0xFF8000, // Background color
+    color: Constants.COLORS.TETROMINO_I, // Background color
     size: 4, // Size of the 'container' of the tetromino
     shapes: [ // All shapes of the tetromino (one per rotation position)
       [
@@ -121,7 +121,7 @@ export const Types = {
   },
   J: {
     name: 'J',
-    color: 0x00ffff,
+    color: Constants.COLORS.TETROMINO_J,
     size: 3,
     shapes: [
       [
@@ -148,7 +148,7 @@ export const Types = {
   },
   L: {
     name: 'L',
-    color: 0xFF0000,
+    color: Constants.COLORS.TETROMINO_L,
     size: 3,
     shapes: [
       [
@@ -175,7 +175,7 @@ export const Types = {
   },
   O: {
     name: '0',
-    color: 0xFFFF00,
+    color: Constants.COLORS.TETROMINO_O,
     size: 2,
     shapes: [
       [
@@ -198,7 +198,7 @@ export const Types = {
   },
   S: {
     name: 'S',
-    color: 0xFF00FF,
+    color: Constants.COLORS.TETROMINO_S,
     size: 3,
     shapes: [
       [
@@ -225,7 +225,7 @@ export const Types = {
   },
   T: {
     name: 'T',
-    color: 0x80FF00,
+    color: Constants.COLORS.TETROMINO_T,
     size : 3,
     shapes: [
       [
@@ -252,7 +252,7 @@ export const Types = {
   },
   Z: {
     name: 'Z',
-    color: 0xFFC000,
+    color: Constants.COLORS.TETROMINO_Z,
     size : 3,
     shapes: [
       [
