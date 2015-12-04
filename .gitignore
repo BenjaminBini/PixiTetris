@@ -1,2 +1,7 @@
 node_modules
-bower_components
+bower_components/*
+!bower_components/pixi.js
+bower_components/pixi.js/*
+!bower_components/pixi.js/bin
+bower_components/pixi.js/bin/*
+!bower_components/pixi.js/bin/pixi.js
