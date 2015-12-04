@@ -8,9 +8,10 @@ If you modify sources you will need to install dependencies and build the bundle
 
 Work in progress.
 
+
 Todo :
 
-- [ ] Restart game when losing
+- [x] Restart game when losing
 - [ ] Levels / Points
 - [ ] Optimize rendering (do not remove everything from the stage at every move)
 
