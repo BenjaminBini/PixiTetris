@@ -141,8 +141,8 @@ export default class Game {
         if (key.isUp && key.press) key.press();
         key.isDown = true;
         key.isUp = false;
+        event.preventDefault();
       }
-      event.preventDefault();
     };
 
     //The `upHandler`
@@ -151,16 +151,16 @@ export default class Game {
         if (key.isDown && key.release) key.release();
         key.isDown = false;
         key.isUp = true;
+        event.preventDefault();
       }
-      event.preventDefault();
     };
 
     //Attach event listeners
     window.addEventListener(
-      "keydown", key.downHandler.bind(key), false
+      'keydown', key.downHandler.bind(key), false
     );
     window.addEventListener(
-      "keyup", key.upHandler.bind(key), false
+      'keyup', key.upHandler.bind(key), false
     );
     return key;
   }
