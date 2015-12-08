@@ -174,7 +174,7 @@ export const Types = {
     ]
   },
   O: {
-    name: '0',
+    name: 'O',
     color: Constants.COLORS.TETROMINO_O,
     size: 2,
     shapes: [
