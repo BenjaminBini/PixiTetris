@@ -1,3 +1,6 @@
+/**
+ * Generic rules
+ */
 body {
     font-family: sans-serif;
 }
@@ -20,54 +23,304 @@ a:hover {
     text-decoration: none;
 }
 
+/**
+ * Game area
+ */
 #game {
     margin-top: 30px;
 }
 
+/**
+ * Info bar
+ */
 .infos {
-    width: 300px;
-    height: 100px;
+    position: relative;
+    width: 150px;
+    height: 600px;
     background: #E2E2E2;
     margin: auto;
-    border: 2px solid #B1B6BB;
-    border-bottom: 0;
+    border: 2px solid #606060;
+    border-right: 0;
     box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
 }
 
+.info-section {
+    margin-top: 15px;
+    color: #545454;
+    font-weight: bold;
+    text-transform: none;
+}
+
+/**
+ * Start/pause
+ */
+#start-pause {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 42px;
+}
+
+#start-pause button {
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: 20px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    background: #606060;
+    color: white;
+    padding-top: 2px;
+    cursor: pointer;
+    transition: background 300ms;
+}
+
+#start-pause button:focus {
+    outline: none;
+}
+
+#start-pause button#start {
+    background: #2CC990;
+}
+#start-pause button#start:hover {
+    background: #008AFF;
+}
+
+#start-pause button#pause {
+    background: #F34344;
+}
+#start-pause button#pause:hover {
+    background: #FF8000;
+}
+
+/**
+ * Tetrominos
+ */
+#next-tetromino {
+    width: 125px;
+    height: 75px;
+    margin: auto;
+    margin-top: 10px;
+    background: #373C40;
+    position: relative;
+}
+
+#next-tetromino > div {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+}
+
+.I > div {
+    background: #FF8000;
+}
+
+.I .block1 {
+    top: 25px;
+    left: 12px;
+}
+
+.I .block2 {
+    top: 25px;
+    left: 38px;
+}
+
+.I .block3 {
+    top: 25px;
+    left: 64px;
+}
+
+.I .block4 {
+    top: 25px;
+    left: 90px;
+}
+
+.J > div {  
+    background: #2CC990;
+}
+
+.J .block1 {
+    top: 12px;
+    left: 25px;
+}
+
+.J .block2 {
+    top: 38px;
+    left: 25px;
+}
+
+.J .block3 {
+    top: 38px;
+    left: 51px;
+}
+
+.J .block4 {
+    top: 38px;
+    left: 77px;
+}
+
+.L > div {  
+    background: #F34344;
+}
+
+.L .block1 {
+    top: 38px;
+    left: 25px;
+}
+
+.L .block2 {
+    top: 38px;
+    left: 51px;
+}
+
+.L .block3 {
+    top: 38px;
+    left: 77px;
+}
+
+.L .block4 {
+    top: 12px;
+    left: 77px;
+}
+
+.O > div {  
+    background: #FFDF00;
+}
+
+.O .block1 {
+    top: 12px;
+    left: 38px;
+}
+
+.O .block2 {
+    top: 38px;
+    left: 38px;
+}
+
+.O .block3 {
+    top: 12px;
+    left: 64px;
+}
+
+.O .block4 {
+    top: 38px;
+    left: 64px;
+}
+
+.S > div {  
+    background: #CCDCE4;
+}
+
+.S .block1 {
+    top: 38px;
+    left: 25px;
+}
+
+.S .block2 {
+    top: 38px;
+    left: 51px;
+}
+
+.S .block3 {
+    top: 12px;
+    left: 51px;
+}
+
+.S .block4 {
+    top: 12px;
+    left: 77px;
+}
+
+.T > div {  
+    background: #008AFF;
+}
+
+.T .block1 {
+    top: 38px;
+    left: 25px;
+}
+
+.T .block2 {
+    top: 38px;
+    left: 51px;
+}
+
+.T .block3 {
+    top: 12px;
+    left: 51px;
+}
+
+.T .block4 {
+    top: 38px;
+    left: 77px;
+}
+
+.Z > div {  
+    background: #FCB941;
+}
+
+.Z .block1 {
+    top: 12px;
+    left: 25px;
+}
+
+.Z .block2 {
+    top: 38px;
+    left: 51px;
+}
+
+.Z .block3 {
+    top: 12px;
+    left: 51px;
+}
+
+.Z .block4 {
+    top: 38px;
+    left: 77px;
+}
+
+/**
+ * Footer
+ */
 footer {
-	background: #fff;
-	color: #878787;
-	border-top: 1px solid #878787;
-	margin-top: 40px;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
+    background: #fff;
+    color: #878787;
+    border-top: 1px solid #878787;
+    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 footer p {
-	padding: 0;
-	margin-bottom: 10px;
-	margin-top: 10px;
+    padding: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 footer a {
-	color: #878787;
-	text-decoration: none;
+    color: #878787;
+    text-decoration: none;
 }
 
 footer span.cc {
-	font-family: 'CC-ICONS';
-	font-weight: normal;
-	vertical-align: text-top;
+    font-family: 'CC-ICONS';
+    font-weight: normal;
+    vertical-align: text-top;
 }
 
 footer span.footer-text {
-	padding: 0 10px;
-	font-weight: bold;
+    padding: 0 10px;
+    font-weight: bold;
 }
 
 footer .github {
-	font-size: 20px;
-	/* vertical-align: text-top; */
+    font-size: 20px;
+    /* vertical-align: text-top; */
 }
