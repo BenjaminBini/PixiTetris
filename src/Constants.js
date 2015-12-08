@@ -17,5 +17,10 @@ export default {
   	BACKGROUND: 0x2d3236,
   	BORDERS: 0x373C40,
   	BORDERS_TRANSPARENCY: 1
+  },
+  DOM: {
+  	CONTAINER: '#game',
+  	NEXT: '#next-tetromino',
+  	START_PAUSE: '#start-pause button'
   }
 };
