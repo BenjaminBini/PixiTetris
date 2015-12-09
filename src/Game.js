@@ -2,6 +2,7 @@ import Tetromino from './Tetromino';
 import {Types} from './Tetromino';
 import Constants from './Constants';
 import Stage from './Stage';
+import ScoreManager from './ScoreManager';
 
 export default class Game {
   constructor() {
@@ -41,6 +42,9 @@ export default class Game {
     // Init timer
     this._timer = new Date().getTime();
 
+    // Score manager
+    this._scoreManager = new ScoreManager();
+
     // GO!
     this._requestId = undefined; // requestAnimationFrame ID (used to pause game)
     this._paused = false;
@@ -54,28 +58,28 @@ export default class Game {
     this._requestId = requestAnimationFrame(() => this._loop());
   }
 
+  /**
+   * Game loop
+   */
   _loop() {
     if (new Date().getTime() - this._timer > this._delay) {
       this._timer = new Date().getTime();
-      this._tetromino.move(0, 1); // Gravity
-      // If collision, cancel  move and unite the tetromino with the game stage
-      if (this._stage.isCollision(this._tetromino)) { 
-        this._tetromino.move(0, -1);
-        this._stage.unite(this._tetromino);
-        this._newTetromino();
-      }
+      this._drop();
       this._render(); // Render
     }
     this._requestId = requestAnimationFrame(() => this._loop());
   }
 
+  /**
+   * Pause the game
+   */
   _pause() {
     this._paused = !this._paused;
     // Stop or restart loop
     if (this._paused) {
       cancelAnimationFrame(this._requestId);
       document.querySelector(Constants.DOM.START_PAUSE).id = 'start';
-      document.querySelector(Constants.DOM.START_PAUSE).innerText = 'start';
+      document.querySelector(Constants.DOM.START_PAUSE).innerText = 'resume';
     } else {
       this._start();   
       document.querySelector(Constants.DOM.START_PAUSE).id = 'pause';
@@ -83,6 +87,54 @@ export default class Game {
     }
   }
 
+  /**
+   * Move the current tetromino downward
+   */
+  _drop() {
+    this._tetromino.move(0, 1); // Gravity
+    // If collision, cancel  move and unite the tetromino with the game stage
+    if (this._stage.isCollision(this._tetromino)) { 
+      this._tetromino.move(0, -1);
+      this._tetromino.remove();
+      var clearedLines = this._stage.unite(this._tetromino);
+      if (clearedLines > 0) {
+        this._scoreManager.addClearedLines(clearedLines);
+      }
+      this._scoreManager.tetrominoDropped();
+      this._newTetromino();
+    }
+  }
+
+  /**
+   * Move the current tetromino as down as possible
+   */
+  _hardDrop() {
+    while (!this._stage.isCollision(this._tetromino)) {
+      this._tetromino.move(0, 1);
+    }
+    this._tetromino.move(0, -1);
+    this._tetromino.remove();
+    var clearedLines = this._stage.unite(this._tetromino);
+    if (clearedLines > 0) {
+      this._scoreManager.addClearedLines(clearedLines);
+    }
+    this._scoreManager.tetrominoDropped();
+    this._newTetromino();
+  }
+
+  /**
+   * Called when the game is over
+   */
+  _gameOver() {
+    this._stage.reset();
+    this._scoreManager.reset();
+  }
+  
+
+  /**
+   * Put a new tetromino on the board
+   * And check if the game is lost or not
+   */
   _newTetromino() {
     if (!this._nextTetromino) {
       this._nextTetromino = Tetromino.getRandom(this._container);  
@@ -92,7 +144,7 @@ export default class Game {
     this._domNextContainer.className = this._nextTetromino.type.name;
     // Lose! Restart
     if (this._stage.isCollision(this._tetromino)) {
-      this._stage.reset();
+      this._gameOver();
     }
   }
 
@@ -166,12 +218,7 @@ export default class Game {
    */
   _pressDown() {
     if (!this._paused) {
-      this._tetromino.move(0, 1);
-      if (this._stage.isCollision(this._tetromino)) {
-        this._tetromino.move(0, -1);
-        this._stage.unite(this._tetromino);
-        this._newTetromino();
-      }
+      this._drop();
       this._render();
     }
   }
@@ -181,12 +228,7 @@ export default class Game {
    */
   _pressSpace() {
     if (!this._paused) {
-      while (!this._stage.isCollision(this._tetromino)) {
-        this._tetromino.move(0, 1);
-      }
-      this._tetromino.move(0, -1);
-      this._stage.unite(this._tetromino);
-      this._newTetromino();
+      this._hardDrop();
       this._render();
     }
   }
