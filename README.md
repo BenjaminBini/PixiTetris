@@ -11,9 +11,12 @@ Work in progress.
 
 Todo :
 
-- [x] Restart game when losing
-- [ ] Levels / Points
-- [ ] Optimize rendering (do not remove everything from the stage at every move)
+- [x] Detect game over
+- [x] Pause / Resume
+- [x] Levels / Points
+- [x] Optimize rendering (do not remove everything from the stage at every move)
+- [ ] Remember best score
+- [ ] Change UI on game over
 
 
 ## Install dependencies
