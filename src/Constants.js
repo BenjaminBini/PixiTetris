@@ -21,6 +21,10 @@ export default {
   DOM: {
   	CONTAINER: '#game',
   	NEXT: '#next-tetromino',
-  	START_PAUSE: '#start-pause button'
+  	START_PAUSE: '#start-pause button',
+    LEVEL: '#level',
+    SCORE: '#score',
+    CLEARED: '#cleared',
+    BEST: '#best-score'
   }
 };
