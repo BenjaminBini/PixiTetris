@@ -237,9 +237,6 @@ export default class Game {
    * Render function
    */
   _render() {
-    // Remove everything from the container, redraw stage and tetromino and render
-    // TODO : do not remove and redraw at every move
-    this._container.removeChildren();
     this._stage.draw();
     this._tetromino.draw();
     this._renderer.render(this._container);

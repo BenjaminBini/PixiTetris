@@ -17,6 +17,9 @@ export default class Tetromino {
 
     // Angle of the tetromino (0: 0deg, 1: 90deg, 2: 180deg, 3: 270deg)
     this.angle = 0;
+
+    // Pixi's blocks
+    this._blocks = [];
   }
 
   /**
@@ -29,22 +32,36 @@ export default class Tetromino {
   }
 
   /**
-   * Add shapes to _container
+   * Add shapes to container
    */
   draw() {
+    let i = 0;
     for (let x = 0; x < this.type.size; x++) {
       for (let y = 0; y < this.type.size; y++) {
         if (this.type.shapes[this.angle][y][x] === 1) {
-          var square = new PIXI.Graphics();
-          square.lineStyle(1, Constants.COLORS.TETROMINO_BORDERS, 1);
-          square.beginFill(this.type.color);
-          square.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
-          square.endFill();
-          square.x = (this.x + x) * Constants.SQUARE_SIZE;
-          square.y = (this.y + y) * Constants.SQUARE_SIZE;
-          this._container.addChild(square);
+          if (this._blocks.length !== 4) {
+            var block = new PIXI.Graphics();
+            block.lineStyle(1, Constants.COLORS.TETROMINO_BORDERS, 1);
+            block.beginFill(this.type.color);
+            block.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
+            block.endFill();
+            this._blocks.push(block);
+            this._container.addChild(block);
+          }
+          this._blocks[i].x = (this.x + x) * Constants.SQUARE_SIZE;
+          this._blocks[i].y = (this.y + y) * Constants.SQUARE_SIZE;
+          i++;
         }
       }
+    }
+  }
+
+  /**
+   * Remove shapes from container
+   */
+  remove() {
+    for (let i = 0; i < this._blocks.length; i++) {
+      this._container.removeChild(this._blocks[i]);
     }
   }
 

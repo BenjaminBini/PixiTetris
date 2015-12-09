@@ -18,34 +18,42 @@ export default class Stage {
         this._data[x].push(0);
       }
     }
+
+    // Pixi's blocks
+    this._blocks = [];
   }
 
   /**
    * Add shapes to the _container
    */
   draw() {
+    var i = 0;
     for (let x = 0; x < Constants.WIDTH; x++) {
       for (let y = 0; y < Constants.HEIGHT; y++) {
         // Color blocks when not empty
         if (this._data[x][y] !== 0) {
-          var square = new PIXI.Graphics();
-          square.lineStyle(1, Constants.COLORS.TETROMINO_BORDERS, 1);
-          square.beginFill(this._data[x][y]);
-          square.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
-          square.endFill();
-          square.x = x * Constants.SQUARE_SIZE;
-          square.y = y * Constants.SQUARE_SIZE;
-          this._container.addChild(square);
-        } else { // Just a white dot in the middle if empty
-          var square = new PIXI.Graphics();
-          square.lineStyle(1, Constants.COLORS.BORDERS, Constants.COLORS.BORDERS_TRANSPARENCY);
-          square.beginFill(Constants.COLORS.BACKGROUND);
-          square.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
-          square.endFill();
-          square.x = x * Constants.SQUARE_SIZE;
-          square.y = y * Constants.SQUARE_SIZE;
-          this._container.addChild(square);
+          var block = new PIXI.Graphics();
+          block.lineStyle(1, Constants.COLORS.TETROMINO_BORDERS, 1);
+          block.beginFill(this._data[x][y]);
+          block.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
+          block.endFill();
+          block.x = x * Constants.SQUARE_SIZE;
+          block.y = y * Constants.SQUARE_SIZE;
+          this._container.removeChild(this._blocks[i]);
+          this._container.addChild(block);
+          this._blocks[i] = block;
+        } else if (this._blocks[i] === undefined) { // Just a grid if empty
+          var block = new PIXI.Graphics();
+          block.lineStyle(1, Constants.COLORS.BORDERS, Constants.COLORS.BORDERS_TRANSPARENCY);
+          block.beginFill(Constants.COLORS.BACKGROUND);
+          block.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
+          block.endFill();
+          block.x = x * Constants.SQUARE_SIZE;
+          block.y = y * Constants.SQUARE_SIZE;
+          this._container.addChild(block);
+          this._blocks[i] = block;
         }
+        i++;
       }
     }
   }
@@ -68,9 +76,12 @@ export default class Stage {
 
   /**
    * Fusion 'tetromino' with the stage
-   * If the fusion create a line, we erase the line
+   * If the fusion create a line, we clear the line
+   * Return the number of cleared lines
    */
   unite(tetromino) {
+    var clearedLines = 0;
+
     // Fusion the tetromino with the stage
     for (let y = 0; y < tetromino.type.size; y++) {
       for (let x = 0; x < tetromino.type.size; x++) {
@@ -95,6 +106,7 @@ export default class Stage {
       }
       // If yes, we erase it and move all concerned blocks
       if (eraseLine) {
+        clearedLines++;
         for (let yy = y + tetromino.y; yy >= 0; yy--) {
           for (let x = 0; x < Constants.WIDTH; x++) {
             if (yy > 0) {
@@ -104,8 +116,12 @@ export default class Stage {
             }
           }
         }
+        // empty the blocks (we will need to redraw)
+        this._blocks = [];
       }
     }
+
+    return clearedLines;
   }
 
   /**
@@ -119,5 +135,6 @@ export default class Stage {
         this._data[x].push(0);
       }
     }
+    this._blocks = [];
   }
 }
