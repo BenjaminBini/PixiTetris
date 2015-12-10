@@ -2,8 +2,8 @@
  * Game constants
  */
 export default {
-  WIDTH: 12, // Width of the game (in number of blocks)
-  HEIGHT: 24, // Height of the game (in number of blocks)
+  WIDTH: 120, // Width of the game (in number of blocks)
+  HEIGHT: 240, // Height of the game (in number of blocks)
   SQUARE_SIZE: 25, // Width and height of a block (in px)
   COLORS: {
   	TETROMINO_BORDERS: 0x373c40,
@@ -19,12 +19,13 @@ export default {
   	BORDERS_TRANSPARENCY: 1
   },
   DOM: {
-  	CONTAINER: '#game',
+  	CONTAINER: '#canvas-container',
   	NEXT: '#next-tetromino',
   	START_PAUSE: '#start-pause button',
     LEVEL: '#level',
     SCORE: '#score',
     CLEARED: '#cleared',
-    BEST: '#best-score'
+    BEST: '#best-score',
+    OVERLAY: '#overlay'
   }
 };

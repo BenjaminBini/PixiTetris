@@ -55,6 +55,7 @@ export default class Game {
    * Start the game
    */
   _start() {
+    this._stage.draw();
     this._requestId = requestAnimationFrame(() => this._loop());
   }
 
@@ -65,8 +66,8 @@ export default class Game {
     if (new Date().getTime() - this._timer > this._delay) {
       this._timer = new Date().getTime();
       this._drop();
-      this._render(); // Render
     }
+    this._render();
     this._requestId = requestAnimationFrame(() => this._loop());
   }
 
@@ -77,13 +78,14 @@ export default class Game {
     this._paused = !this._paused;
     // Stop or restart loop
     if (this._paused) {
-      cancelAnimationFrame(this._requestId);
-      document.querySelector(Constants.DOM.START_PAUSE).id = 'start';
       document.querySelector(Constants.DOM.START_PAUSE).innerText = 'resume';
+      document.querySelector(Constants.DOM.START_PAUSE).innerText = 'continue';
+      document.querySelector(Constants.DOM.OVERLAY).className = 'active';
     } else {
       this._start();   
       document.querySelector(Constants.DOM.START_PAUSE).id = 'pause';
       document.querySelector(Constants.DOM.START_PAUSE).innerText = 'pause';
+      document.querySelector(Constants.DOM.OVERLAY).className = '';
     }
   }
 
@@ -101,6 +103,7 @@ export default class Game {
         this._scoreManager.addClearedLines(clearedLines);
       }
       this._scoreManager.tetrominoDropped();
+      this._stage.draw();
       this._newTetromino();
     }
   }
@@ -119,6 +122,7 @@ export default class Game {
       this._scoreManager.addClearedLines(clearedLines);
     }
     this._scoreManager.tetrominoDropped();
+    this._stage.draw();
     this._newTetromino();
   }
 
@@ -127,6 +131,7 @@ export default class Game {
    */
   _gameOver() {
     this._stage.reset();
+    this._stage.draw();
     this._scoreManager.reset();
   }
   
@@ -183,7 +188,6 @@ export default class Game {
       if (this._stage.isCollision(this._tetromino)) {
         this._tetromino.move(1, 0);
       }
-      this._render();
     }
   }
 
@@ -196,7 +200,6 @@ export default class Game {
       if (this._stage.isCollision(this._tetromino)) {
         this._tetromino.move(-1, 0);
       }
-      this._render();
     }
   }
 
@@ -209,7 +212,6 @@ export default class Game {
       if (this._stage.isCollision(this._tetromino)) {
         this._tetromino.antiRotate();
       }
-      this._render();
     }
   }
 
@@ -219,7 +221,6 @@ export default class Game {
   _pressDown() {
     if (!this._paused) {
       this._drop();
-      this._render();
     }
   }
 
@@ -229,7 +230,6 @@ export default class Game {
   _pressSpace() {
     if (!this._paused) {
       this._hardDrop();
-      this._render();
     }
   }
 
@@ -237,7 +237,6 @@ export default class Game {
    * Render function
    */
   _render() {
-    this._stage.draw();
     this._tetromino.draw();
     this._renderer.render(this._container);
   }

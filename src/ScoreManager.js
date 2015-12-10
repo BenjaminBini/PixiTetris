@@ -6,6 +6,10 @@ export default class ScoreManager {
   }
 
   reset() {
+    this.best =  localStorage.bestScore ? localStorage.bestScore : 0;
+    if (this.score > this.best) {
+      this.best = localStorage.bestScore = this.score;
+    }
     this.level = 0;
     this.score = 0;
     this.clearedLines = 0;
@@ -43,5 +47,6 @@ export default class ScoreManager {
     document.querySelector(Constants.DOM.LEVEL).innerText = this.level;
     document.querySelector(Constants.DOM.SCORE).innerText = this.score;
     document.querySelector(Constants.DOM.CLEARED).innerText = this.clearedLines;
+    document.querySelector(Constants.DOM.BEST).innerText = this.best;
   }
 }

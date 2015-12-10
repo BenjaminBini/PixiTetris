@@ -15,8 +15,10 @@ Todo :
 - [x] Pause / Resume
 - [x] Levels / Points
 - [x] Optimize rendering (do not remove everything from the stage at every move)
-- [ ] Remember best score
+- [x] Remember best score
+- [x] Change UI on pause
 - [ ] Change UI on game over
+- [ ] Restart button
 
 
 ## Install dependencies
