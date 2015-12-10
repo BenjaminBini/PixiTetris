@@ -1,4 +1,5 @@
 import Constants from './Constants';
+import BlockFactory from './BlockFactory';
 
 /**
  * Represent the game stage
@@ -32,24 +33,17 @@ export default class Stage {
       for (let y = 0; y < Constants.HEIGHT; y++) {
         // Color blocks when not empty
         if (this._data[x][y] !== 0) {
-          var block = new PIXI.Graphics();
-          block.lineStyle(1, Constants.COLORS.TETROMINO_BORDERS, 1);
-          block.beginFill(this._data[x][y]);
-          block.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
-          block.endFill();
-          block.x = x * Constants.SQUARE_SIZE;
-          block.y = y * Constants.SQUARE_SIZE;
+          var block = BlockFactory.createBlock(x * Constants.SQUARE_SIZE, y * Constants.SQUARE_SIZE, 
+            Constants.SQUARE_SIZE, Constants.SQUARE_SIZE, 
+            this._data[x][y], Constants.COLORS.TETROMINO_BORDERS, 0.5);
+          
           this._container.removeChild(this._blocks[i]);
           this._container.addChild(block);
           this._blocks[i] = block;
         } else if (this._blocks[i] === undefined) { // Just a grid if empty
-          var block = new PIXI.Graphics();
-          block.lineStyle(1, Constants.COLORS.BORDERS, Constants.COLORS.BORDERS_TRANSPARENCY);
-          block.beginFill(Constants.COLORS.BACKGROUND);
-          block.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
-          block.endFill();
-          block.x = x * Constants.SQUARE_SIZE;
-          block.y = y * Constants.SQUARE_SIZE;
+          var block = BlockFactory.createBlock(x * Constants.SQUARE_SIZE, y * Constants.SQUARE_SIZE, 
+            Constants.SQUARE_SIZE, Constants.SQUARE_SIZE, 
+            Constants.COLORS.BACKGROUND, Constants.COLORS.BORDERS, 0.5);
           this._container.addChild(block);
           this._blocks[i] = block;
         }

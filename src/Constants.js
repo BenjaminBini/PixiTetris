@@ -2,8 +2,8 @@
  * Game constants
  */
 export default {
-  WIDTH: 120, // Width of the game (in number of blocks)
-  HEIGHT: 240, // Height of the game (in number of blocks)
+  WIDTH: 12, // Width of the game (in number of blocks)
+  HEIGHT: 24, // Height of the game (in number of blocks)
   SQUARE_SIZE: 25, // Width and height of a block (in px)
   COLORS: {
   	TETROMINO_BORDERS: 0x373c40,
@@ -15,8 +15,7 @@ export default {
   	TETROMINO_T: 0x008aff,
   	TETROMINO_Z: 0xfcb941,
   	BACKGROUND: 0x2d3236,
-  	BORDERS: 0x373C40,
-  	BORDERS_TRANSPARENCY: 1
+  	BORDERS: 0x373C40
   },
   DOM: {
   	CONTAINER: '#canvas-container',

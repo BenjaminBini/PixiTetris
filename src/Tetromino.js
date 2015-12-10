@@ -1,4 +1,5 @@
 import Constants from './Constants';
+import BlockFactory from './BlockFactory';
 
 /**
  * Represents a tetromino
@@ -40,11 +41,8 @@ export default class Tetromino {
       for (let y = 0; y < this.type.size; y++) {
         if (this.type.shapes[this.angle][y][x] === 1) {
           if (this._blocks.length !== 4) {
-            var block = new PIXI.Graphics();
-            block.lineStyle(1, Constants.COLORS.TETROMINO_BORDERS, 1);
-            block.beginFill(this.type.color);
-            block.drawRect(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE);
-            block.endFill();
+            var block = BlockFactory.createBlock(0, 0, Constants.SQUARE_SIZE, Constants.SQUARE_SIZE, 
+              this.type.color, Constants.COLORS.TETROMINO_BORDERS, 0.5);
             this._blocks.push(block);
             this._container.addChild(block);
           }

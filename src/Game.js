@@ -78,6 +78,7 @@ export default class Game {
     this._paused = !this._paused;
     // Stop or restart loop
     if (this._paused) {
+      cancelAnimationFrame(this._requestId);
       document.querySelector(Constants.DOM.START_PAUSE).innerText = 'resume';
       document.querySelector(Constants.DOM.START_PAUSE).innerText = 'continue';
       document.querySelector(Constants.DOM.OVERLAY).className = 'active';
