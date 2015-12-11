@@ -23,7 +23,7 @@ function getTexture(color) {
   canvas.width = 1;
   canvas.height = 1;
   var ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#' + color.toString(16);
+  ctx.fillStyle = color;
   ctx.beginPath();
   ctx.rect(0,0,1,1);
   ctx.fill();

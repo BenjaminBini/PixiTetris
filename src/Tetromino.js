@@ -60,6 +60,7 @@ export default class Tetromino {
   remove() {
     for (let i = 0; i < this._blocks.length; i++) {
       this._container.removeChild(this._blocks[i]);
+      delete this._blocks[i];
     }
   }
 

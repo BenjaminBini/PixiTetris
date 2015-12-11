@@ -38,6 +38,7 @@ export default class Stage {
             this._data[x][y], Constants.COLORS.TETROMINO_BORDERS, 0.5);
           
           this._container.removeChild(this._blocks[i]);
+          delete this._blocks[i];
           this._container.addChild(block);
           this._blocks[i] = block;
         } else if (this._blocks[i] === undefined) { // Just a grid if empty
