@@ -1,12 +1,13 @@
 # PixiTetris
 
-Trying to create a simple Tetris game using [Pixi.js](http://github.com/pixijs/pixi.js), ES6 (Babel) and browserify.
+A simple Tetris game using [Pixi.js](http://github.com/pixijs/pixi.js), ES6 (Babel) and browserify.
+
+[Try it here!](http://static.bini.io/PixiTetris/)
 
 Set up a web server and open `index.html`.
 
 If you modify sources you will need to install dependencies and build the bundle file.
 
-Work in progress.
 
 
 Todo :
